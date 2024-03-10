@@ -1,0 +1,13 @@
+{
+  "dist/extension.js": [],
+  "src/extension.js": [],
+  "src/extensionUtil.js": [],
+  "src/getParticipants.js": [
+    "src/extensionUtil.js"
+  ],
+  "src/updateSpeaker.js": [
+    "src/extensionUtil.js",
+    "src/getParticipants.js"
+  ],
+  "webpack.config.js": []
+}

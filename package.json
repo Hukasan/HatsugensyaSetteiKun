@@ -1,0 +1,133 @@
+{
+    "activationEvents": [
+        "onLanguage:markdown",
+        "onLanguage:plaintext"
+    ],
+    "categories": [
+        "Other"
+    ],
+    "contributes": {
+        "commands": [
+            {
+                "command": "hatsugensyasetteikun.updateSpeaker1",
+                "enablement": "editorLangId == markdown || editorLangId == plaintext",
+                "title": "選択行の発言者を更新(1番目の参加者)"
+            },
+            {
+                "command": "hatsugensyasetteikun.updateSpeaker2",
+                "enablement": "editorLangId == markdown || editorLangId == plaintext",
+                "title": "選択行の発言者を更新(2番目の参加者)"
+            },
+            {
+                "command": "hatsugensyasetteikun.updateSpeaker3",
+                "enablement": "editorLangId == markdown || editorLangId == plaintext",
+                "title": "選択行の発言者を更新(3番目の参加者)"
+            },
+            {
+                "command": "hatsugensyasetteikun.updateSpeaker4",
+                "enablement": "editorLangId == markdown || editorLangId == plaintext",
+                "title": "選択行の発言者を更新(4番目の参加者)"
+            },
+            {
+                "command": "hatsugensyasetteikun.updateSpeaker5",
+                "enablement": "editorLangId == markdown || editorLangId == plaintext",
+                "title": "選択行の発言者を更新(5番目の参加者)"
+            }
+        ],
+        "configuration": {
+            "properties": {
+                "hatsugensyasetteikun.getParticipantsFromDoc": {
+                    "default": true,
+                    "description": "テキストファイルから会議出席者を自動取得する機能を有効化します。",
+                    "type": "boolean"
+                },
+                "hatsugensyasetteikun.participants": {
+                    "description": "会議出席者の一覧。会議出席者を自動取得しない場合に設定します。1項につき1人の名前を設定してください。",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "hatsugensyasetteikun.participantsPrefix": {
+                    "default": "出席者：",
+                    "description": "会議出席者が記載された行の先頭文字列。テキストファイルから会議出席者を自動取得する機能の設定です。この文字列の後に出席者名があるものとして解釈します。",
+                    "type": "string"
+                },
+                "hatsugensyasetteikun.participantsSeparator": {
+                    "default": ",",
+                    "description": "会議出席者名の区切り文字。テキストファイルから会議出席者を自動取得する機能の設定です。出席者名ごとにこの文字で区切っているものとして解釈します。",
+                    "enum": [
+                        ",",
+                        "、",
+                        " "
+                    ],
+                    "type": "string"
+                }
+            },
+            "title": "議事録の発言者設定君"
+        },
+        "keybindings": [
+            {
+                "command": "hatsugensyasetteikun.updateSpeaker1",
+                "key": "ctrl+alt+1"
+            },
+            {
+                "command": "hatsugensyasetteikun.updateSpeaker2",
+                "key": "ctrl+alt+2"
+            },
+            {
+                "command": "hatsugensyasetteikun.updateSpeaker3",
+                "key": "ctrl+alt+3"
+            },
+            {
+                "command": "hatsugensyasetteikun.updateSpeaker4",
+                "key": "ctrl+alt+4"
+            },
+            {
+                "command": "hatsugensyasetteikun.updateSpeaker5",
+                "key": "ctrl+alt+5"
+            }
+        ]
+    },
+    "description": "議事録作成の補助ツールです。選択行の発言者をシンプルな操作で設定できます。",
+    "devDependencies": {
+        "@types/mocha": "^10.0.2",
+        "@types/node": "18.x",
+        "@types/vscode": "^1.82.0",
+        "@typescript-eslint/eslint-plugin": "^6.7.3",
+        "@typescript-eslint/parser": "^6.7.3",
+        "@vscode/test-electron": "^2.3.4",
+        "eslint": "^8.50.0",
+        "glob": "^10.3.3",
+        "mocha": "^10.2.0",
+        "ts-loader": "^9.4.4",
+        "typescript": "^5.2.2",
+        "webpack": "^5.88.2",
+        "webpack-cli": "^5.1.4"
+    },
+    "displayName": "議事録の発言者設定君",
+    "engines": {
+        "vscode": "^1.82.0"
+    },
+    "main": "./dist/extension.js",
+    "name": "hatsugensyasetteikun",
+    "publisher": "dc-fukatsu-koki",
+    "repository": {
+        "url": "https://github.com/Hukasan/hatsugensyasetteikun"
+    },
+    "scripts": {
+        "compile": "webpack",
+        "compile-tests": "tsc -p . --outDir out",
+        "lint": "eslint src --ext ts",
+        "package": "webpack --mode production --devtool hidden-source-map",
+        "pretest": "npm run compile-tests && npm run compile && npm run lint",
+        "test": "node ./out/test/runTest.js",
+        "vscode:prepublish": "npm run package",
+        "watch": "webpack --watch",
+        "watch-tests": "tsc -p . -w --outDir out"
+    },
+    "version": "1.0.0",
+    "dependencies": {
+        "lodash": "^4.17.21"
+    }
+}
